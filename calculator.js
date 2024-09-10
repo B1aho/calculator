@@ -59,7 +59,6 @@ function addButtonsListeners() {
 
 function handleOperationEvents(event) {
     let val = event.target.value;
-
     if (val >= '0' && val <= '9' || val === '.') {
         if (val === '.' && !havePoint) {
             havePoint = true;
@@ -78,6 +77,13 @@ function handleOperationEvents(event) {
         havePoint = false;
         operator = val;
     } else if (val === 'AC') {
-
-    } else if (val === '=')
+        // Уточнить насколько такая практика ок
+        oper1 = undefined;
+        oper2 = undefined;
+        havePoint = false;
+        pressOperator = false;
+        clearInput();
+    } else if (val === '=') {
+        display(operate(operator, parseInt(oper1), parseInt(oper2)));
+    }
 } 
