@@ -1,1 +1,47 @@
 /*Handjet - font*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.center-elements {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+}
+
+.buttons > * {
+    flex: 1;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.left-side > * {
+    display: flex;
+}
+
+.left-line > * {
+    flex: 1;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side > * {
+    flex: 1;
+}
