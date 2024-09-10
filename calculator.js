@@ -11,7 +11,11 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
-    return a / b;
+    if (b === 0) {
+        alert("Can't divide bu 0!");
+    }
+    else 
+        return a / b;
 }
 
 function operate(operator, operand1, operand2) {
@@ -68,7 +72,7 @@ function handleOperationEvents(event) {
             }
     }
     } else if (val === '+' || val === '*' || val === '-' || val === '/') {
-        if (pressOperator) {
+        if (pressOperator && oper2 !== "") {
             havePoint = false;
             res = operate(operator, parseFloat(oper1), parseFloat(oper2));
             operator = val;
@@ -96,7 +100,7 @@ function handleOperationEvents(event) {
 } 
 
 function showResult(num) {
-    if (num === undefined) {
+    if (num === undefined || isNaN(num)) {
         display.value = "There must be two operands";
     } else { 
         display.value = num;
