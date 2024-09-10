@@ -45,20 +45,10 @@ const display = document.querySelector("#display");
 function addButtonsListeners() {
     const buttons = document.querySelector(".buttons");
     buttons.addEventListener("click", handleOperationEvents);
-    // Логика такая, 1) Вешаем слушатель на большой див с кнопками, чтобы разом слушать все кнопки
-    // 2) Далее, если нажимаются цифровые кнопки "0-9-." то сохраняем нажатые значения кнопок в строку.
-    // 2.1) Дублирующие нажатия точки не считаются
-    // 3) Как только нажата кнопка операции "+-*/", то строка с первым числом парсится, оператор запоминается
-    // в переменную
-    // 3.1) ДУблирующие нажатия оператора переписывают оператор в переменной - последний нажатый будет активным
-    // 4) Далее, если нажимаются цифровые кнопки "0-9-." то сохраняем нажатые значения кнопок во второй операнд
-    // 5) Если после этого нажаты кнопки операций, то они не учитываются
-    // 6) Получается большая часть этой логики должна быть в обработчиках событий
-    // 7) Если operator undefined, то цифры записываем в oper1, если оператор есть, то цифры идут в oper2
-    // 8) Булево значение надо для того, что нажата точка или нет
 }
 
 function handleOperationEvents(event) {
+    let res = 0;
     let val = event.target.value;
     if (val >= '0' && val <= '9' || val === '.') {
         if (val === '.' && !havePoint) {
@@ -78,9 +68,18 @@ function handleOperationEvents(event) {
             }
     }
     } else if (val === '+' || val === '*' || val === '-' || val === '/') {
-        pressOperator = true;
-        havePoint = false;
-        operator = val;
+        if (pressOperator) {
+            havePoint = false;
+            res = operate(operator, parseFloat(oper1), parseFloat(oper2));
+            operator = val;
+            oper1 = res;
+            oper2 = "";
+            showResult(res);
+        } else {
+            pressOperator = true;
+            havePoint = false;
+            operator = val;
+        }
     } else if (val === 'AC') {
         oper1 = "";
         oper2 = "";
@@ -89,7 +88,7 @@ function handleOperationEvents(event) {
         pressOperator = false;
         display.value = "";
     } else if (val === '=') {
-        let res = operate(operator, parseFloat(oper1), parseFloat(oper2));
+        res = operate(operator, parseFloat(oper1), parseFloat(oper2));
         oper1 = res;
         oper2 = "";
         showResult(res);
