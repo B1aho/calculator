@@ -52,6 +52,7 @@ function addButtonsListeners() {
     buttons.addEventListener("click", handleOperationEvents);
 }
 
+// Упростить логику
 function handleOperationEvents(event) {
     let res = 0;
     let val;
