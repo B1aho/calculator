@@ -15,20 +15,22 @@ function divide(a, b) {
 }
 
 function operation(operator, operand1, operand2) {
+    let result;
     switch (operator) {
         case '+':
-            add(operand1, operand2);
+            result = add(operand1, operand2);
             break;
         case '-':
-            subtract(operand1, operand2);
+            result = subtract(operand1, operand2);
             break;
         case '*':
-            multiply(operand1, operand2);
+            result = multiply(operand1, operand2);
             break;
         case '/':
-            divide(operand1, operand2);
+            result = divide(operand1, operand2);
             break;
         default:
             break;
     }
+    return result;
 }
