@@ -35,8 +35,8 @@ function operate(operator, operand1, operand2) {
     return result;
 }
 
-let oper1;
-let oper2;
+let oper1 = "";
+let oper2 = "";
 let operator;
 let havePoint = false;
 let pressOperator = false;
@@ -44,7 +44,7 @@ const display = document.querySelector("#display");
 
 function addButtonsListeners() {
     const buttons = document.querySelector(".buttons");
-    buttons.addEventListener("click", );
+    buttons.addEventListener("click", handleOperationEvents);
     // Логика такая, 1) Вешаем слушатель на большой див с кнопками, чтобы разом слушать все кнопки
     // 2) Далее, если нажимаются цифровые кнопки "0-9-." то сохраняем нажатые значения кнопок в строку.
     // 2.1) Дублирующие нажатия точки не считаются
@@ -78,20 +78,18 @@ function handleOperationEvents(event) {
         havePoint = false;
         operator = val;
     } else if (val === 'AC') {
-        // Уточнить насколько такая практика ок
-        oper1 = undefined;
-        oper2 = undefined;
+        oper1 = "";
+        oper2 = "";
         havePoint = false;
         pressOperator = false;
         display.value = "";
     } else if (val === '=') {
-        showResult(operate(operator, parseInt(oper1), parseInt(oper2)));
+        showResult(operate(operator, parseFloat(oper1), parseFloat(oper2)));
     }
 } 
 
 function showResult(num) {
-    display.addEventListener("focus", () => {
-        display.value = num;
-    })
-    display.dispatchEvent("focus");
+    display.value = num;
 }
+
+addButtonsListeners();
