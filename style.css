@@ -14,6 +14,7 @@
 .calculator-body {
     display: flex;
     flex-direction: column;
+    padding: 1%;
 }
 
 .buttons {
@@ -27,6 +28,7 @@
 .left-side {
     display: flex;
     flex-direction: column;
+    flex-grow: 2;
 }
 
 .left-side > * {
@@ -41,8 +43,13 @@
 .right-side {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 }
 
 .right-side > * {
     flex: 1;
+}
+
+#display {
+    font-family: "Handjet", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
