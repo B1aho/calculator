@@ -68,11 +68,15 @@ function handleOperationEvents(event) {
             } else {
                 oper2 += val;
             }
-        } else if (!pressOperator) {
-            oper1 += val;
-        } else {
-            oper2 += val;
-        }
+        } else if (val !== '.') {
+            if (!pressOperator) {
+                oper1 += val;
+                showResult(parseFloat(oper1));
+            } else {
+                oper2 += val;
+                showResult(parseFloat(oper2));
+            }
+    }
     } else if (val === '+' || val === '*' || val === '-' || val === '/') {
         pressOperator = true;
         havePoint = false;
@@ -80,16 +84,24 @@ function handleOperationEvents(event) {
     } else if (val === 'AC') {
         oper1 = "";
         oper2 = "";
+        operator = "";
         havePoint = false;
         pressOperator = false;
         display.value = "";
     } else if (val === '=') {
-        showResult(operate(operator, parseFloat(oper1), parseFloat(oper2)));
+        let res = operate(operator, parseFloat(oper1), parseFloat(oper2));
+        oper1 = res;
+        oper2 = "";
+        showResult(res);
     }
 } 
 
 function showResult(num) {
-    display.value = num;
+    if (num === undefined) {
+        display.value = "There must be two operands";
+    } else { 
+        display.value = num;
+    }
 }
 
 addButtonsListeners();
