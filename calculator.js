@@ -40,6 +40,7 @@ let oper2;
 let operator;
 let havePoint = false;
 let pressOperator = false;
+const display = document.querySelector("#display");
 
 function addButtonsListeners() {
     const buttons = document.querySelector(".buttons");
@@ -82,8 +83,15 @@ function handleOperationEvents(event) {
         oper2 = undefined;
         havePoint = false;
         pressOperator = false;
-        clearInput();
+        display.value = "";
     } else if (val === '=') {
-        display(operate(operator, parseInt(oper1), parseInt(oper2)));
+        showResult(operate(operator, parseInt(oper1), parseInt(oper2)));
     }
 } 
+
+function showResult(num) {
+    display.addEventListener("focus", () => {
+        display.value = num;
+    })
+    display.dispatchEvent("focus");
+}
