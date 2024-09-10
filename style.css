@@ -31,6 +31,7 @@
 
 .left-side > * {
     display: flex;
+    flex: 1;
 }
 
 .left-line > * {
