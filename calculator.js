@@ -57,7 +57,7 @@ function handleOperationEvents(event) {
     let res = 0;
     let val;
     if (event.type === "click") {
-        val = event.target.value;
+        val = event.target.textContent;
     } else {
         val = event.key;
     }
