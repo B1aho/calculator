@@ -45,6 +45,7 @@ let operator;
 let havePoint = false;
 let pressOperator = false;
 const display = document.querySelector("#display");
+const point = document.querySelector("#point");
 
 function addButtonsListeners() {
     const buttons = document.querySelector(".buttons");
@@ -59,6 +60,7 @@ function handleOperationEvents(event) {
     if (val >= '0' && val <= '9' || val === '.') {
         if (val === '.' && !havePoint) {
             havePoint = true;
+            point.disabled = true;
             if (!pressOperator) {
                 oper1 += val;
             } else {
@@ -76,6 +78,7 @@ function handleOperationEvents(event) {
     } else if (val === '+' || val === '*' || val === '-' || val === '/') {
         if (pressOperator && oper2 !== "") {
             havePoint = false;
+            point.disabled = false;
             res = operate(operator, parseFloat(oper1), parseFloat(oper2));
             operator = val;
             oper1 = res;
@@ -84,6 +87,7 @@ function handleOperationEvents(event) {
         } else {
             pressOperator = true;
             havePoint = false;
+            point.disabled = false;
             operator = val;
         }
     } else if (val === 'AC') {
@@ -91,6 +95,7 @@ function handleOperationEvents(event) {
         oper2 = "";
         operator = "";
         havePoint = false;
+        point.disabled = false;
         pressOperator = false;
         display.value = "";
     } else if (val === '=') {
