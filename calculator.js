@@ -61,7 +61,7 @@ function handleOperationEvents(event) {
         val = event.key;
     }
     if (val >= '0' && val <= '9' || val === '.') {
-        if (val === '.' && !point.disabled/) {
+        if (val === '.' && !point.disabled) {
             point.disabled = true;
             if (!pressOperator) {
                 oper1 += val;
