@@ -108,7 +108,7 @@ function handleOperationEvents(event) {
 
 function showResult(num) {
     if (num === undefined || isNaN(num)) {
-        display.textContent = "There must be two operands";
+        display.textContent = "MIN 2 operands";
     } else { 
         display.textContent = num;
     }

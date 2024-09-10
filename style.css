@@ -62,9 +62,10 @@
 #display {
     display: flex;
     justify-content: right;
+    text-wrap: wrap;
     align-items: center;
     font-family: "Handjet", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 4em;
+    font-size: 3.2em;
     background-color: rgb(105, 91, 72);
     flex-grow: 1;
     line-height: 0px;
