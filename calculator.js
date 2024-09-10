@@ -42,24 +42,26 @@ function operate(operator, operand1, operand2) {
 let oper1 = "";
 let oper2 = "";
 let operator;
-let havePoint = false;
 let pressOperator = false;
 const display = document.querySelector("#display");
 const point = document.querySelector("#point");
+document.addEventListener("keypress", handleOperationEvents);
 
 function addButtonsListeners() {
     const buttons = document.querySelector(".buttons");
     buttons.addEventListener("click", handleOperationEvents);
 }
-// Возможно подумать над css отключением точки, если она уже нажата, то есть визуальное решение.
-// Добавить поддержку клавиатуры
-// Добавить кнопку возврать действия
+
 function handleOperationEvents(event) {
     let res = 0;
-    let val = event.target.value;
+    let val;
+    if (event.type === "click") {
+        val = event.target.value;
+    } else {
+        val = event.key;
+    }
     if (val >= '0' && val <= '9' || val === '.') {
-        if (val === '.' && !havePoint) {
-            havePoint = true;
+        if (val === '.' && !point.disabled/) {
             point.disabled = true;
             if (!pressOperator) {
                 oper1 += val;
@@ -77,7 +79,6 @@ function handleOperationEvents(event) {
     }
     } else if (val === '+' || val === '*' || val === '-' || val === '/') {
         if (pressOperator && oper2 !== "") {
-            havePoint = false;
             point.disabled = false;
             res = operate(operator, parseFloat(oper1), parseFloat(oper2));
             operator = val;
@@ -86,7 +87,6 @@ function handleOperationEvents(event) {
             showResult(res);
         } else {
             pressOperator = true;
-            havePoint = false;
             point.disabled = false;
             operator = val;
         }
@@ -94,7 +94,6 @@ function handleOperationEvents(event) {
         oper1 = "";
         oper2 = "";
         operator = "";
-        havePoint = false;
         point.disabled = false;
         pressOperator = false;
         display.value = "";
@@ -113,5 +112,6 @@ function showResult(num) {
         display.value = num;
     }
 }
+
 
 addButtonsListeners();
