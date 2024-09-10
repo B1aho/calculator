@@ -20,12 +20,13 @@ body {
 .calculator-body {
     display: flex;
     flex-direction: column;
-    padding: 1.5%;
+    padding: 1.9%;
     background-color: #e0e5ed;
     gap: 2%;
     width: 30%;
     height: 85%;
     box-shadow: 5px 5px 10px rgb(163, 177, 198, 0.6), -5px -5px 10px rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
 }
 
 
@@ -79,7 +80,8 @@ body {
     color: rgb(255, 255, 255);
     flex-grow: 1.5;
     line-height: 0px;
-    box-shadow: inset 0px -3px 8px rgba(255, 255, 255, 0.737);    
+    box-shadow: inset 0px 2px 6px 0px rgba(0, 0, 0, 0.463);    
+    border-radius: 2px;
 }
 
 .btn {
@@ -100,3 +102,58 @@ body {
     box-shadow: inset 5px 5px 10px rgb(163, 177, 198, 0.6), inset -5px -5px 10px rgba(255, 255, 255, 0.5);
 }
 
+#point:disabled:hover {
+    cursor: default;
+    animation: horizontal-shaking 0.2s 2;
+    transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(5px) }
+    50% { transform: translateX(-5px) }
+    75% { transform: translateX(5px) }
+    100% { transform: translateX(0) }
+   }
+
+#plus {
+    background-image: url(./images/icons8-plus-64.png);
+    background-size: 45px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #e0e5ed00;
+}
+
+#minus {
+    background-image: url(./images/icons8-minus-60.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #e0e5ed00;
+}
+
+#mult {
+    background-image: url(./images/icons8-multiply-60.png);
+    background-size: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #e0e5ed00;
+}
+
+#divide {
+    background-image: url(./images/divide.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #e0e5ed00;
+}
+
+#equal {
+    background-image: url(./images/equal.png);
+    background-size: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #e0e5ed00;
+}
