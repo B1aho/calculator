@@ -50,7 +50,9 @@ function addButtonsListeners() {
     const buttons = document.querySelector(".buttons");
     buttons.addEventListener("click", handleOperationEvents);
 }
-
+// Возможно подумать над css отключением точки, если она уже нажата, то есть визуальное решение.
+// Добавить поддержку клавиатуры
+// Добавить кнопку возврать действия
 function handleOperationEvents(event) {
     let res = 0;
     let val = event.target.value;
