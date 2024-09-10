@@ -97,7 +97,7 @@ function handleOperationEvents(event) {
         operator = "";
         point.disabled = false;
         pressOperator = false;
-        display.value = "";
+        display.textContent = "";
     } else if (val === '=') {
         res = operate(operator, parseFloat(oper1), parseFloat(oper2));
         oper1 = res;
@@ -108,9 +108,9 @@ function handleOperationEvents(event) {
 
 function showResult(num) {
     if (num === undefined || isNaN(num)) {
-        display.value = "There must be two operands";
+        display.textContent = "There must be two operands";
     } else { 
-        display.value = num;
+        display.textContent = num;
     }
 }
 
