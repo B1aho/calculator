@@ -38,9 +38,12 @@ function operate(operator, operand1, operand2) {
 let oper1;
 let oper2;
 let operator;
-let isPoint;
+let havePoint = false;
+let pressOperator = false;
 
 function addButtonsListeners() {
+    const buttons = document.querySelector(".buttons");
+    buttons.addEventListener("click", );
     // Логика такая, 1) Вешаем слушатель на большой див с кнопками, чтобы разом слушать все кнопки
     // 2) Далее, если нажимаются цифровые кнопки "0-9-." то сохраняем нажатые значения кнопок в строку.
     // 2.1) Дублирующие нажатия точки не считаются
@@ -52,5 +55,29 @@ function addButtonsListeners() {
     // 6) Получается большая часть этой логики должна быть в обработчиках событий
     // 7) Если operator undefined, то цифры записываем в oper1, если оператор есть, то цифры идут в oper2
     // 8) Булево значение надо для того, что нажата точка или нет
-
 }
+
+function handleOperationEvents(event) {
+    let val = event.target.value;
+
+    if (val >= '0' && val <= '9' || val === '.') {
+        if (val === '.' && !havePoint) {
+            havePoint = true;
+            if (!pressOperator) {
+                oper1 += val;
+            } else {
+                oper2 += val;
+            }
+        } else if (!pressOperator) {
+            oper1 += val;
+        } else {
+            oper2 += val;
+        }
+    } else if (val === '+' || val === '*' || val === '-' || val === '/') {
+        pressOperator = true;
+        havePoint = false;
+        operator = val;
+    } else if (val === 'AC') {
+
+    } else if (val === '=')
+} 
